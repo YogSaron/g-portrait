@@ -1,13 +1,15 @@
 package com.me.common.util;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  *
  * 根据八字查询五行
  * Created by Logan Zhou on 2018-01-12.
  */
 public class FiveElementsFromBazi {
-    final static String[] fe = {"gold","wood","water","fire","soil"};
-    public String[] getFEFromBazi(){
+    public Map<String,Integer> getFEFromBazi(){
         /*String[] gold = {"庚","辛","申","酉"};
         String[] wood = {"甲","乙","寅","卯"};
         String[] water = {"壬","癸","亥","子"};
@@ -21,6 +23,7 @@ public class FiveElementsFromBazi {
         String soil = "戊己辰戍丑未";
         String[] bs = bazi.split("");
         int go = 0,wo = 0,wa = 0,fi = 0,so = 0;
+        Map map = new HashMap<String,Integer>();
         for (int i = 0; i <bazi.length() ; i++) {
             if(gold.contains(bs[i])){
                 go++;
@@ -43,6 +46,17 @@ public class FiveElementsFromBazi {
                 continue;
             };
         }
-        return null;
+        map.put("go",go);
+        map.put("wo",wo);
+        map.put("wa",wa);
+        map.put("fi",fi);
+        map.put("so",so);
+        return map;
+    }
+
+    public static void main(String[] args) {
+        FiveElementsFromBazi fe = new FiveElementsFromBazi();
+        Map<String,Integer> hm = fe.getFEFromBazi();
+        System.out.println(hm);
     }
 }

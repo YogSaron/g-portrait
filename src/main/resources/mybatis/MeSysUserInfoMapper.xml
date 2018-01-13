@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.me.mybatis.mapper.MeSysUserInfoMapper">
+  <resultMap id="BaseResultMap" type="com.me.mybatis.entity.MeSysUserInfo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="sex" jdbcType="INTEGER" property="sex" />
+    <result column="year" jdbcType="INTEGER" property="year" />
+    <result column="month" jdbcType="INTEGER" property="month" />
+    <result column="hour" jdbcType="INTEGER" property="hour" />
+    <result column="Horoscope_year" jdbcType="CHAR" property="horoscopeYear" />
+    <result column="Horoscope_month" jdbcType="CHAR" property="horoscopeMonth" />
+    <result column="Horoscope_day" jdbcType="CHAR" property="horoscopeDay" />
+    <result column="Horoscope_hour" jdbcType="CHAR" property="horoscopeHour" />
+    <result column="calendar" jdbcType="INTEGER" property="calendar" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, username, sex, year, month, hour, Horoscope_year, Horoscope_month, Horoscope_day, 
+    Horoscope_hour, calendar, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from me_sys_user_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from me_sys_user_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.me.mybatis.entity.MeSysUserInfo">
+    insert into me_sys_user_info (id, username, sex, 
+      year, month, hour, 
+      Horoscope_year, Horoscope_month, Horoscope_day, 
+      Horoscope_hour, calendar, create_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER}, 
+      #{year,jdbcType=INTEGER}, #{month,jdbcType=INTEGER}, #{hour,jdbcType=INTEGER}, 
+      #{horoscopeYear,jdbcType=CHAR}, #{horoscopeMonth,jdbcType=CHAR}, #{horoscopeDay,jdbcType=CHAR}, 
+      #{horoscopeHour,jdbcType=CHAR}, #{calendar,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.me.mybatis.entity.MeSysUserInfo">
+    insert into me_sys_user_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="year != null">
+        year,
+      </if>
+      <if test="month != null">
+        month,
+      </if>
+      <if test="hour != null">
+        hour,
+      </if>
+      <if test="horoscopeYear != null">
+        Horoscope_year,
+      </if>
+      <if test="horoscopeMonth != null">
+        Horoscope_month,
+      </if>
+      <if test="horoscopeDay != null">
+        Horoscope_day,
+      </if>
+      <if test="horoscopeHour != null">
+        Horoscope_hour,
+      </if>
+      <if test="calendar != null">
+        calendar,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="year != null">
+        #{year,jdbcType=INTEGER},
+      </if>
+      <if test="month != null">
+        #{month,jdbcType=INTEGER},
+      </if>
+      <if test="hour != null">
+        #{hour,jdbcType=INTEGER},
+      </if>
+      <if test="horoscopeYear != null">
+        #{horoscopeYear,jdbcType=CHAR},
+      </if>
+      <if test="horoscopeMonth != null">
+        #{horoscopeMonth,jdbcType=CHAR},
+      </if>
+      <if test="horoscopeDay != null">
+        #{horoscopeDay,jdbcType=CHAR},
+      </if>
+      <if test="horoscopeHour != null">
+        #{horoscopeHour,jdbcType=CHAR},
+      </if>
+      <if test="calendar != null">
+        #{calendar,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.me.mybatis.entity.MeSysUserInfo">
+    update me_sys_user_info
+    <set>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="year != null">
+        year = #{year,jdbcType=INTEGER},
+      </if>
+      <if test="month != null">
+        month = #{month,jdbcType=INTEGER},
+      </if>
+      <if test="hour != null">
+        hour = #{hour,jdbcType=INTEGER},
+      </if>
+      <if test="horoscopeYear != null">
+        Horoscope_year = #{horoscopeYear,jdbcType=CHAR},
+      </if>
+      <if test="horoscopeMonth != null">
+        Horoscope_month = #{horoscopeMonth,jdbcType=CHAR},
+      </if>
+      <if test="horoscopeDay != null">
+        Horoscope_day = #{horoscopeDay,jdbcType=CHAR},
+      </if>
+      <if test="horoscopeHour != null">
+        Horoscope_hour = #{horoscopeHour,jdbcType=CHAR},
+      </if>
+      <if test="calendar != null">
+        calendar = #{calendar,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.me.mybatis.entity.MeSysUserInfo">
+    update me_sys_user_info
+    set username = #{username,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=INTEGER},
+      year = #{year,jdbcType=INTEGER},
+      month = #{month,jdbcType=INTEGER},
+      hour = #{hour,jdbcType=INTEGER},
+      Horoscope_year = #{horoscopeYear,jdbcType=CHAR},
+      Horoscope_month = #{horoscopeMonth,jdbcType=CHAR},
+      Horoscope_day = #{horoscopeDay,jdbcType=CHAR},
+      Horoscope_hour = #{horoscopeHour,jdbcType=CHAR},
+      calendar = #{calendar,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
