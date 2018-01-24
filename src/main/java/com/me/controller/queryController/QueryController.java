@@ -1,20 +1,25 @@
-package com.me.controller;
+package com.me.controller.queryController;
 
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 /**
- * Created by Administrator on 2018/1/10.
+ * Created by Logan Zhou on 2018-01-24.
  */
 @Controller
 @EnableAutoConfiguration
-public class TestController {
+public class QueryController {
 
     @RequestMapping("/")
     String index(){
 
         return "index";
+    }
+
+    @PostMapping("queryForPortrait")
+    String queryForPortraitController(){
+        return "queryView";
     }
 }
