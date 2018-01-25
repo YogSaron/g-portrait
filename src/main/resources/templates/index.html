@@ -14,6 +14,7 @@
         .outer-container {
             width: 70%;
             margin: 0 auto;
+            background: white;
         }
 
         .drop-scroll {
@@ -21,78 +22,106 @@
             overflow: auto;
             cursor: pointer;
         }
+
+        .main-container {
+            margin-top: 20px;
+        }
+        .btn-space{
+            height:150px;
+            line-height:150px;
+        }
     </style>
 </head>
-<body>
+<body style="background: #FBEDC8;">
 <div class="outer-container">
     <!--头部页面-->
     <div th:replace="common/header :: header"></div>
     <!--主页-->
-    <section>
+    <section class="content-wrap">
         <div class="container-fluid">
-            <form class="form-horizontal" id="info-form" action="queryForPortrait.html">
-                <div class="row">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1" class="col-md-1 control-label">姓</label>
-                        <div class="col-md-2">
-                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email"
-                                   autocomplete="off">
-                        </div>
-                        <label for="exampleInputPassword1" class="col-md-1 control-label">名</label>
-                        <div class="col-md-2">
-                            <input type="password" class="form-control" id="exampleInputPassword1"
-                                   placeholder="Password" autocomplete="off">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="form-group">
-                        <label class="col-md-1 control-label">性别</label>
-                        <div class="col-md-3">
-                            <input class="" type="radio" name="sex">男
-                            <input class="" type="radio" name="sex">女
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="form-group">
-                        <label class="control-label col-md-1">阳历日期</label>
-                        <div class="col-md-3">
-                            <input type="text" class="form-control date" id="born-date">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="form-group">
-                        <label class="control-label col-md-1">生辰</label>
-                        <div class="col-md-3">
-                        <div class="input-group">
-                            <i class="clearable fa fa-remove"
-                               style="line-hight: 30px; font-size: 14px"></i>
-
-                            <input id="suitName" type="text" class="form-control">
-
-                            <div class="input-group-btn">
-                                <ul class="dropdown-menu drop-scroll" aria-labelledby="dropdownMenu1">
-                                </ul>
+            <div class="row">
+                <!--主页面-->
+                <div class="col-md-6 col-md-offset-2 main-container">
+                    <form class="form-horizontal" id="info-form" action="queryForPortrait.html">
+                            <div class="form-group">
+                                <label for="firstName" class="col-md-3 control-label">姓:</label>
+                                <div class="col-md-2">
+                                    <input type="email" class="form-control" id="firstName" placeholder="姓"
+                                           name="firstName">
+                                </div>
+                                <label for="lastName" class="col-md-1 control-label">名:</label>
+                                <div class="col-md-3">
+                                    <input type="text" class="form-control" id="lastName"
+                                           placeholder="名" name="lastName">
+                                </div>
                             </div>
-                            <!-- /btn-group -->
-                        </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-5 text-center">
-                        <button type="submit" class="btn btn-default btn-primary" style="width:200px;">提交</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </section>
-    <!--资讯栏-->
-    <aside>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">性别:</label>
+                                <div class="col-md-3">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="sex" id="sex-male" value="1" checked="checked"> 男
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="sex" id="sex-female" value="0"> 女
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3">阳历日期:</label>
+                                <div class="col-md-5">
+                                    <input type="text" class="form-control date" id="born-date" name="birthday">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3">时辰:</label>
+                                <!--<div class="col-md-5">
+                                    <div class="input-group">
+                                        <i class="clearable fa fa-remove"
+                                           style="line-hight: 30px; font-size: 14px"></i>
 
-    </aside>
+                                        <input id="suitName" type="text" class="form-control">
+
+                                        <div class="input-group-btn">
+                                            <ul class="dropdown-menu drop-scroll" aria-labelledby="dropdownMenu1">
+                                            </ul>
+                                        </div>
+                                        &lt;!&ndash; /btn-group &ndash;&gt;
+                                    </div>
+                                </div>-->
+                                <div class="col-md-5">
+                                    <select class="form-control" name="hour">
+                                        <option value="1">子  00:00-00:59</option>,
+                                        <option value="2">丑  01:00-02:59</option>,
+                                        <option value="3">寅  03:00-04:59</option>,
+                                        <option value="4">卯  05:00-06:59</option>,
+                                        <option value="5">辰  07:00-08:59</option>,
+                                        <option value="6">巳  09:00-10:59</option>,
+                                        <option value="7">午  11:00-12:59</option>,
+                                        <option value="8">未  13:00-14:59</option>,
+                                        <option value="9">申  15:00-16:59</option>,
+                                        <option value="10">酉  17:00-18:59</option>,
+                                        <option value="11">戌  19:00-20:59</option>,
+                                        <option value="12">亥  21:00-22:59</option>,
+                                        <option value="1">子  23:00-23:59</option>
+                                    </select>
+                                </div>
+                            </div>
+                        <div class="row">
+                            <div class="col-md-12 text-center btn-space">
+                                <button type="submit" class="btn btn-default btn-primary" style="width:220px;">立即转运
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!--资讯栏-->
+                <aside class="col-md-4 sidebar">
+                    dfadfa
+                </aside>
+            </div>
+        </div>
+
+    </section>
     <footer></footer>
 </div>
 </body>
@@ -109,32 +138,23 @@
             idField: "vl",
             keyField: "label",
             showBtn: true,
-            data: {value:[
-                {vl: "0", "label": "子00:00-00:59"},
-                {vl: "1", "label": "丑01:00-01:59"},
-                {vl: "2", "label": "丑02:00-02:59"},
-                {vl: "3", "label": "寅03:00-03:59"},
-                {vl: "4", "label": "寅04:00-04:59"},
-                {vl: "5", "label": "卯05:00-05:59"},
-                {vl: "6", "label": "卯06:00-06:59"},
-                {vl: "7", "label": "辰07:00-07:59"},
-                {vl: "8", "label": "辰08:00-08:59"},
-                {vl: "9", "label": "巳09:00-09:59"},
-                {vl: "10", "label": "巳10:00-10:59"},
-                {vl: "11", "label": "午11:00-11:59"},
-                {vl: "12", "label": "午12:00-12:59"},
-                {vl: "13", "label": "未13:00-13:59"},
-                {vl: "14", "label": "未14:00-14:59"},
-                {vl: "15", "label": "申15:00-15:59"},
-                {vl: "16", "label": "申16:00-16:59"},
-                {vl: "17", "label": "酉17:00-17:59"},
-                {vl: "18", "label": "酉18:00-18:59"},
-                {vl: "19", "label": "戌19:00-19:59"},
-                {vl: "20", "label": "戌20:00-20:59"},
-                {vl: "21", "label": "亥21:00-21:59"},
-                {vl: "22", "label": "亥22:00-22:59"},
-                {vl: "23", "label": "子23:00-23:59"}
-            ]}
+            data: {
+                value: [
+                    {vl: "1", "label": "子00:00-00:59"},
+                    {vl: "2", "label": "丑01:00-02:59"},
+                    {vl: "3", "label": "寅03:00-04:59"},
+                    {vl: "4", "label": "卯05:00-06:59"},
+                    {vl: "5", "label": "辰07:00-08:59"},
+                    {vl: "6", "label": "巳09:00-10:59"},
+                    {vl: "7", "label": "午11:00-12:59"},
+                    {vl: "8", "label": "未13:00-14:59"},
+                    {vl: "9", "label": "申15:00-16:59"},
+                    {vl: "10", "label": "酉17:00-18:59"},
+                    {vl: "11", "label": "戌19:00-20:59"},
+                    {vl: "12", "label": "亥21:00-22:59"},
+                    {vl: "1", "label": "子23:00-23:59"}
+                ]
+            }
         })
 
 

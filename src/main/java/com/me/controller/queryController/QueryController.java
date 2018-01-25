@@ -1,7 +1,9 @@
 package com.me.controller.queryController;
 
+import com.me.common.wrapBeans.UserBean;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -12,14 +14,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @EnableAutoConfiguration
 public class QueryController {
 
-    @RequestMapping("/")
-    String index(){
+    @RequestMapping("/index")
+    String index() {
 
         return "index";
     }
 
-    @PostMapping("queryForPortrait")
-    String queryForPortraitController(){
+    @PostMapping("/index/queryForPortrait")
+    String queryForPortraitController(UserBean userBean,Model model) {
+
         return "queryView";
     }
+
+
 }
