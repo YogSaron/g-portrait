@@ -29,7 +29,7 @@
     delete from me_sys_user_info
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.me.mybatis.entity.MeSysUserInfo">
+  <insert id="insert" parameterType="com.me.mybatis.entity.MeSysUserInfo" useGeneratedKeys="true" keyProperty="id">
     insert into me_sys_user_info (id, username, sex, 
       year, month, hour, 
       Horoscope_year, Horoscope_month, Horoscope_day, 

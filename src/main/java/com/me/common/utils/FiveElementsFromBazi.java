@@ -9,13 +9,12 @@ import java.util.Map;
  * Created by Logan Zhou on 2018-01-12.
  */
 public class FiveElementsFromBazi {
-    public Map<String,Integer> getFEFromBazi(){
+    public static Map<String,Integer> getFEFromBazi(String bazi){
         /*String[] gold = {"庚","辛","申","酉"};
         String[] wood = {"甲","乙","寅","卯"};
         String[] water = {"壬","癸","亥","子"};
         String[] fire = {"丙","丁","巳","午"};
         String[] soil = {"戊","己","辰","戍","丑","未"};*/
-        String bazi = "己未丙子乙酉癸未";
         String gold = "庚辛申酉";
         String wood = "甲乙寅卯";
         String water = "壬癸亥子";
@@ -55,8 +54,7 @@ public class FiveElementsFromBazi {
     }
 
     public static void main(String[] args) {
-        FiveElementsFromBazi fe = new FiveElementsFromBazi();
-        Map<String,Integer> hm = fe.getFEFromBazi();
+        Map<String,Integer> hm = FiveElementsFromBazi.getFEFromBazi("甲");
         System.out.println(hm);
     }
 }

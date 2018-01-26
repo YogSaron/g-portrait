@@ -12,6 +12,9 @@ public class UserBean implements Serializable{
     private String birthday;
     private Integer hour;
 
+    public UserBean() {
+    }
+
     public UserBean(String firstName, String lastName, Integer sex, String birthday, Integer hour) {
         this.firstName = firstName;
         this.lastName = lastName;
