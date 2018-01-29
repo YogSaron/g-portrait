@@ -15,10 +15,17 @@
 <!--头部导航-->
 <div th:replace="common/header::header"></div>
 <!--主页面显示查询结果-->
+<!--,${userInfo.horoscopeMonth},${userInfo.horoscopeDay},${userInfo.horoscopeHour}-->
 <section>
     <div class="container-fluid">
+        <h3>您的名字：</h3>
+        <h4><a th:text="${userInfo.username}"></a></h4>
+        <h3>您的生日：</h3>
+        <h4><a th:text="${userInfo.year}+'-'+${userInfo.month}+'-'+${userInfo.day}"></a> </h4>
         <h3>您的八字：</h3>
-        <p>fkashdkfjahkfhskdjfhkashfsdfkasfasfdsadfasdfsa</p>
+        <h4><a th:text="${userInfo.horoscopeYear}+','+${userInfo.horoscopeMonth}+','+${userInfo.horoscopeDay}+','+${userInfo.horoscopeHour}"> </a></h4>
+        <h3>您的八字五行：</h3>
+        <h4 th:object="${fE}"><a th:text="*{water}+'个水,'+*{soil}+'个土,'+*{wood}+'个木,'+*{fire}+'个火,'+*{gold}+'个金'"></a> </h4>
         <h3></h3>
     </div>
     <div></div>

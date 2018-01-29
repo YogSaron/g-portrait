@@ -6,6 +6,7 @@
     <result column="username" jdbcType="VARCHAR" property="username" />
     <result column="sex" jdbcType="INTEGER" property="sex" />
     <result column="year" jdbcType="INTEGER" property="year" />
+    <result column="day" jdbcType="INTEGER" property="day" />
     <result column="month" jdbcType="INTEGER" property="month" />
     <result column="hour" jdbcType="INTEGER" property="hour" />
     <result column="Horoscope_year" jdbcType="CHAR" property="horoscopeYear" />
@@ -16,10 +17,10 @@
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, username, sex, year, month, hour, Horoscope_year, Horoscope_month, Horoscope_day, 
+    id, username, sex, year, day, month, hour, Horoscope_year, Horoscope_month, Horoscope_day, 
     Horoscope_hour, calendar, create_time
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap" >
     select 
     <include refid="Base_Column_List" />
     from me_sys_user_info
@@ -31,17 +32,17 @@
   </delete>
   <insert id="insert" parameterType="com.me.mybatis.entity.MeSysUserInfo" useGeneratedKeys="true" keyProperty="id">
     insert into me_sys_user_info (id, username, sex, 
-      year, month, hour, 
+      year, day, month, hour, 
       Horoscope_year, Horoscope_month, Horoscope_day, 
       Horoscope_hour, calendar, create_time
       )
     values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER}, 
-      #{year,jdbcType=INTEGER}, #{month,jdbcType=INTEGER}, #{hour,jdbcType=INTEGER}, 
+      #{year,jdbcType=INTEGER}, #{day,jdbcType=INTEGER}, #{month,jdbcType=INTEGER}, #{hour,jdbcType=INTEGER}, 
       #{horoscopeYear,jdbcType=CHAR}, #{horoscopeMonth,jdbcType=CHAR}, #{horoscopeDay,jdbcType=CHAR}, 
       #{horoscopeHour,jdbcType=CHAR}, #{calendar,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.me.mybatis.entity.MeSysUserInfo">
+  <insert id="insertSelective" parameterType="com.me.mybatis.entity.MeSysUserInfo" useGeneratedKeys="true" keyProperty="id">
     insert into me_sys_user_info
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -55,6 +56,9 @@
       </if>
       <if test="year != null">
         year,
+      </if>
+      <if test="day != null">
+        day,
       </if>
       <if test="month != null">
         month,
@@ -94,6 +98,9 @@
       <if test="year != null">
         #{year,jdbcType=INTEGER},
       </if>
+      <if test="day != null">
+        #{day,jdbcType=INTEGER},
+      </if>
       <if test="month != null">
         #{month,jdbcType=INTEGER},
       </if>
@@ -132,6 +139,9 @@
       <if test="year != null">
         year = #{year,jdbcType=INTEGER},
       </if>
+      <if test="day != null">
+        day = #{day,jdbcType=INTEGER},
+      </if>
       <if test="month != null">
         month = #{month,jdbcType=INTEGER},
       </if>
@@ -164,6 +174,7 @@
     set username = #{username,jdbcType=VARCHAR},
       sex = #{sex,jdbcType=INTEGER},
       year = #{year,jdbcType=INTEGER},
+      day = #{day,jdbcType=INTEGER},
       month = #{month,jdbcType=INTEGER},
       hour = #{hour,jdbcType=INTEGER},
       Horoscope_year = #{horoscopeYear,jdbcType=CHAR},

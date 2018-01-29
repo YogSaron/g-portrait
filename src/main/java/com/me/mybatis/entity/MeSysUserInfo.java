@@ -11,6 +11,8 @@ public class MeSysUserInfo {
 
     private Integer year;
 
+    private Integer day;
+
     private Integer month;
 
     private Integer hour;
@@ -57,6 +59,14 @@ public class MeSysUserInfo {
 
     public void setYear(Integer year) {
         this.year = year;
+    }
+
+    public Integer getDay() {
+        return day;
+    }
+
+    public void setDay(Integer day) {
+        this.day = day;
     }
 
     public Integer getMonth() {
