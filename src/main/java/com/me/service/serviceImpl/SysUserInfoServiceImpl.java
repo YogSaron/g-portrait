@@ -32,7 +32,7 @@ public class SysUserInfoServiceImpl implements SysUserInfoService {
     private MeSysFiveElementsMapper meSysFiveElementsMapper;
 
     @Override
-    public HashMap<String, Object> doPortraitInfoSave(UserBean userBean) {
+    public Integer doPortraitInfoSave(UserBean userBean) {
 
         ObjectMapper objectMapper = new ObjectMapper();
 
@@ -53,12 +53,14 @@ public class SysUserInfoServiceImpl implements SysUserInfoService {
             MeSysUserInfo meSysUserInfo = new MeSysUserInfo();
             meSysUserInfo.setUsername(userBean.getFirstName() + userBean.getLastName());
             meSysUserInfo.setSex(userBean.getSex());
+            //封装八字年月
             if (bs.length > 3) {
                 meSysUserInfo.setHoroscopeYear(bs[0]);
                 meSysUserInfo.setHoroscopeMonth(bs[1]);
                 meSysUserInfo.setHoroscopeDay(bs[2]);
                 meSysUserInfo.setHoroscopeHour(bs[3]);
             }
+            //封装用户年月
             meSysUserInfo.setYear(Integer.parseInt(birthdayYear));
             meSysUserInfo.setMonth(Integer.parseInt(birthdayMonth));
             meSysUserInfo.setDay(Integer.parseInt(birthdayDay));
@@ -76,10 +78,7 @@ public class SysUserInfoServiceImpl implements SysUserInfoService {
             meSysFiveElements.setSoil(fiveEles.get("so"));
             meSysFiveElements.setWood(fiveEles.get("wo"));
             meSysFiveElementsMapper.insert(meSysFiveElements);//赋值保存
-            HashMap<String, Object> map = new HashMap<String, Object>();
-            map.put("userInfo", objectMapper.writeValueAsString(meSysUserInfo));
-            map.put("fE", objectMapper.writeValueAsString(meSysFiveElements));
-            return map;
+            return meSysUserInfo.getId();
         } catch (Exception e) {
             e.printStackTrace();
         }

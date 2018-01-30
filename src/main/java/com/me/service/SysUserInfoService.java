@@ -10,5 +10,5 @@ import java.util.HashMap;
  */
 public interface SysUserInfoService {
 
-    public HashMap<String,Object> doPortraitInfoSave(UserBean userBean);
+    public Integer doPortraitInfoSave(UserBean userBean);
 }
