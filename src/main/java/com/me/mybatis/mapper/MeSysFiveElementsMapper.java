@@ -11,6 +11,9 @@ public interface MeSysFiveElementsMapper {
 
     MeSysFiveElements selectByPrimaryKey(Integer id);
 
+    //根据parentId查找对象
+    MeSysFiveElements selectByParentId(Integer id);
+
     int updateByPrimaryKeySelective(MeSysFiveElements record);
 
     int updateByPrimaryKey(MeSysFiveElements record);

@@ -43,7 +43,7 @@
             <div class="row">
                 <!--主页面-->
                 <div class="col-md-6 col-md-offset-2 main-container">
-                    <form class="form-horizontal" id="info-form" method="post" onsubmit="javascript:void(0);userInfoSubmit();">
+                    <form class="form-horizontal" id="info-form" method="post" onsubmit="return false;">
                         <div class="form-group">
                             <label for="firstName" class="col-md-3 control-label">姓:</label>
                             <div class="col-md-2">
@@ -92,36 +92,37 @@
                             <div class="col-md-5">
                                 <select class="form-control" name="hour">
                                     <option value="1">子 00:00-00:59</option>
-                                    ,
+
                                     <option value="2">丑 01:00-02:59</option>
-                                    ,
+
                                     <option value="3">寅 03:00-04:59</option>
-                                    ,
+
                                     <option value="4">卯 05:00-06:59</option>
-                                    ,
+
                                     <option value="5">辰 07:00-08:59</option>
-                                    ,
+
                                     <option value="6">巳 09:00-10:59</option>
-                                    ,
+
                                     <option value="7">午 11:00-12:59</option>
-                                    ,
+
                                     <option value="8">未 13:00-14:59</option>
-                                    ,
+
                                     <option value="9">申 15:00-16:59</option>
-                                    ,
+
                                     <option value="10">酉 17:00-18:59</option>
-                                    ,
+
                                     <option value="11">戌 19:00-20:59</option>
-                                    ,
+
                                     <option value="12">亥 21:00-22:59</option>
-                                    ,
+
                                     <option value="1">子 23:00-23:59</option>
                                 </select>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12 text-center btn-space">
-                                <button type="submit" class="btn btn-default btn-primary" style="width:220px;">提交
+                                <button type="submit" class="btn btn-default btn-primary" onclick="userInfoSubmit();"
+                                        style="width:220px;">提交
                                 </button>
                             </div>
                         </div>
@@ -175,21 +176,30 @@
 
     //保存数据
     function userInfoSubmit() {
+        if (!isChinese($("#firstName").val())||!isChinese($("#lastName").val())) {
+            alert("请输入中文名");
+            return;
+        };
         $.ajax({
             url: '/post/userInfoSave.json',
-            type:'post',
-            async:false,
+            type: 'post',
+            async: false,
             data: $("#info-form").serialize(),
             success: function (result) {
                 if (result.code == 0) {
-                    alert("保存成功");
+                    window.location.href = "/resultView.html?id=" + result.id;
                 }
             },
-            error:function(){
+            error: function () {
                 alert(XMLHttpRequest.readyState);
             }
         });
     }
 
+    function isChinese(data) {
+        var re = /[^\\u4e00-\\u9fa5]/;
+        if (re.test(data)) return false;
+        return true;
+    }
 </script>
 </html>

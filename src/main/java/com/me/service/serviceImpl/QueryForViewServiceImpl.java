@@ -8,12 +8,10 @@ import com.me.mybatis.entity.MeSysFiveElements;
 import com.me.mybatis.entity.MeSysUserInfo;
 import com.me.mybatis.mapper.MeSysFiveElementsMapper;
 import com.me.mybatis.mapper.MeSysUserInfoMapper;
-import com.me.service.SysUserInfoService;
+import com.me.service.QueryForViewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -23,8 +21,8 @@ import java.util.Map;
 /**
  * Created by Logan Zhou on 2018-01-26.
  */
-@Service("sysUserInfoService")
-public class SysUserInfoServiceImpl implements SysUserInfoService {
+@Service("queryForViewService")
+public class QueryForViewServiceImpl implements QueryForViewService {
 
     @Autowired
     private MeSysUserInfoMapper meSysUserInfoMapper;
@@ -84,5 +82,19 @@ public class SysUserInfoServiceImpl implements SysUserInfoService {
         }
         return null;
 
+    }
+
+    /**
+     * 根据id查询user信息和五行信息
+     * @param id
+     */
+    @Override
+    public Map<String,Object> getUserInfoById(Integer id) {
+        MeSysUserInfo meSysUserInfo = meSysUserInfoMapper.selectByPrimaryKey(id);
+        MeSysFiveElements meSysFiveElements = meSysFiveElementsMapper.selectByParentId(id);
+        Map<String,Object> map = new HashMap<String,Object>();
+        map.put("userInfo",meSysUserInfo);
+        map.put("fE",meSysFiveElements);
+        return map;
     }
 }

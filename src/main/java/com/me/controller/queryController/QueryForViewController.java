@@ -3,14 +3,12 @@ package com.me.controller.queryController;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.me.common.utils.R;
 import com.me.common.wrapBeans.UserBean;
-import com.me.mybatis.entity.MeSysFiveElements;
-import com.me.mybatis.entity.MeSysUserInfo;
-import com.me.service.SysUserInfoService;
+import com.me.service.QueryForViewService;
+import org.apache.commons.collections.map.HashedMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -18,29 +16,41 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Logan Zhou on 2018-01-24.
  */
 @Controller
 @EnableAutoConfiguration
-public class QueryController {
+public class QueryForViewController {
 
     @Autowired
-    private SysUserInfoService sysUserInfoService;
+    private QueryForViewService queryForViewService;
 
+    @RequestMapping("/")
+    String forwardToIndex(){
+        return "forward:/index.html";
+    }
+//    首页
     @RequestMapping("/index")
-    String index() {
+    String toIndex() {
 
         return "index";
     }
 
+    /**
+     * 数据保存
+     * @param userBean
+     * @param redirectAttributes
+     * @return
+     */
     @PostMapping("/post/userInfoSave")
     public @ResponseBody
     R queryForPortraitController(UserBean userBean, RedirectAttributes redirectAttributes) {
         Integer id = null;
         try {
-            id = sysUserInfoService.doPortraitInfoSave(userBean);
+            id = queryForViewService.doPortraitInfoSave(userBean);
             if (id==null){
                 return R.error();
             }
@@ -53,18 +63,23 @@ public class QueryController {
     }
 
 
-    @RequestMapping("/feedback/view")
-    public ModelAndView userInfoSave(@ModelAttribute("userInfo") String userInfo,@ModelAttribute("fE") String fE,Model model){
+    /**
+     * 跳转到结果界面
+     * @param id
+     * @param model
+     * @return
+     */
+    @RequestMapping("/resultView")
+    public ModelAndView userInfoSave(Integer id,Model model){
         ObjectMapper objectMapper = new ObjectMapper();
+        Map<String,Object> map = new HashMap();
         try {
-            MeSysUserInfo  meSysUserInfo= objectMapper.readValue(userInfo,MeSysUserInfo.class);
-            MeSysFiveElements meSysFiveElements = objectMapper.readValue(fE,MeSysFiveElements.class);
-            model.addAttribute("userInfo",meSysUserInfo);
-            model.addAttribute("fE",meSysFiveElements);
+            map = queryForViewService.getUserInfoById(id);
         } catch (Exception e) {
             e.printStackTrace();
         }
         ModelAndView modelAndView = new ModelAndView("queryView");
+        modelAndView.addAllObjects(map);
         return modelAndView;
     }
 }
