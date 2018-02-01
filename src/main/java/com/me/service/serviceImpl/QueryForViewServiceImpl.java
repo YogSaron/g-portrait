@@ -11,6 +11,7 @@ import com.me.mybatis.mapper.MeSysUserInfoMapper;
 import com.me.service.QueryForViewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -30,6 +31,7 @@ public class QueryForViewServiceImpl implements QueryForViewService {
     private MeSysFiveElementsMapper meSysFiveElementsMapper;
 
     @Override
+    @Transactional
     public Integer doPortraitInfoSave(UserBean userBean) {
 
         ObjectMapper objectMapper = new ObjectMapper();

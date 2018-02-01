@@ -198,8 +198,9 @@
 
     function isChinese(data) {
         var re = /[^\\u4e00-\\u9fa5]/;
-        if (re.test(data)) return false;
-        return true;
+        /*if (re.test(data)) return false;
+         return true;*/
+        return re.test(data);
     }
 </script>
 </html>
