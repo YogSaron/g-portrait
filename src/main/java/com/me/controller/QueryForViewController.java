@@ -1,4 +1,4 @@
-package com.me.controller.queryController;
+package com.me.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.me.common.utils.R;
