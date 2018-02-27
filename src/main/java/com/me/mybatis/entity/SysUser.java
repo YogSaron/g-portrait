@@ -11,6 +11,8 @@ public class SysUser {
 
     private String salt;
 
+    private Integer state;
+
     public Integer getId() {
         return id;
     }
@@ -49,5 +51,13 @@ public class SysUser {
 
     public void setSalt(String salt) {
         this.salt = salt == null ? null : salt.trim();
+    }
+
+    public Integer getState() {
+        return state;
+    }
+
+    public void setState(Integer state) {
+        this.state = state;
     }
 }

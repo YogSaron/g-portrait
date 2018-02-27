@@ -1,7 +1,10 @@
 package com.me;
 
 import com.me.mybatis.entity.MeSysUserInfo;
+import com.me.mybatis.entity.SysUser;
 import com.me.mybatis.mapper.MeSysUserInfoMapper;
+import com.me.mybatis.mapper.SysUserMapper;
+import com.me.mybatis.mapper.SysUserRoleMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +17,13 @@ public class GPortraitApplicationTests {
 	@Autowired
 	private MeSysUserInfoMapper meSysUserInfoMapper;
 
+	@Autowired
+	private SysUserMapper sysUserMapper;
 	@Test
 	public void contextLoads() {
-		MeSysUserInfo meSysUserInfo = new MeSysUserInfo();
-		meSysUserInfo.setSex(1);
-		meSysUserInfo.setUsername("赵四");
-		meSysUserInfoMapper.insertSelective(meSysUserInfo);
+		SysUser sysUser = sysUserMapper.selectByUsername("admin");
+		System.out.println(sysUser.getName()+","+sysUser.getUsername());
 	}
+
 
 }

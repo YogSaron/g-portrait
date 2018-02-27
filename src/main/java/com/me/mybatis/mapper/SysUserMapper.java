@@ -14,4 +14,7 @@ public interface SysUserMapper {
     int updateByPrimaryKeySelective(SysUser record);
 
     int updateByPrimaryKey(SysUser record);
+
+    //根据username查找user
+    SysUser selectByUsername(String username);
 }
