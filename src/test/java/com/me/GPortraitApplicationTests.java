@@ -25,5 +25,15 @@ public class GPortraitApplicationTests {
 		System.out.println(sysUser.getName()+","+sysUser.getUsername());
 	}
 
+	@Test
+	public void rotate(){
+		System.out.println(reversal("abcdefg",9));
+	}
 
+	private String reversal(String str,int offsetNum){
+		offsetNum = offsetNum%str.length();
+		String lateNum = str.substring(str.length()-offsetNum);
+		String frontNum = str.substring(0,str.length()-offsetNum);
+		return lateNum+frontNum;
+	}
 }
