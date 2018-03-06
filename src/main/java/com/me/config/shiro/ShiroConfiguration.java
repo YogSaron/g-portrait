@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.apache.shiro.mgt.SecurityManager;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -31,6 +32,10 @@ public class ShiroConfiguration {
 //        filterChainDefinitionMap.put("/admin/login","anon");
         //<!-- authc:所有url都必须认证通过才可以访问; anon:所有url都都可以匿名访问-->
         filterChainDefinitionMap.put("/admin/**","authc");
+
+        Map map = new HashMap();
+        map.put("authc",new MyLoginFilter());
+        shiroFilterFactoryBean.setFilters(map);
         // 如果不设置默认会自动寻找Web工程根目录下的"/login.jsp"页面
         shiroFilterFactoryBean.setLoginUrl("/admin/login");
         // 登录成功后要跳转的链接

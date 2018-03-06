@@ -2,10 +2,8 @@ package com.me.controller;
 
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
@@ -39,7 +37,7 @@ public class AdministrationController {
         return "admin/login";
     }
 
-    @RequestMapping(value="/admin/")
+    @RequestMapping(value="/admin/access/index")
     public String toAdminIndex() {
         return "/admin/access/index";
     }
