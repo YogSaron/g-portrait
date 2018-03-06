@@ -5,6 +5,7 @@ import org.apache.shiro.authc.UnknownAccountException;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
@@ -13,11 +14,9 @@ import java.util.Map;
  * Created by Logan Zhou on 2018-02-01.
  */
 @Controller
-@EnableAutoConfiguration
-@RequestMapping("/admin")
 public class AdministrationController {
 
-    @RequestMapping("login")
+    @RequestMapping(value = "/admin/login")
     public String toAdminLogin(HttpServletRequest request, Map<String, Object> map) {
         String exception = (String) request.getAttribute("shiroLoginFailure");
         System.out.println("exception=" + exception);
@@ -40,8 +39,14 @@ public class AdministrationController {
         return "admin/login";
     }
 
-    @RequestMapping("access/index")
+    @RequestMapping(value="/admin/")
     public String toAdminIndex() {
-        return "admin/access/index";
+        return "/admin/access/index";
     }
+
+/*    @RequestMapping("/logout")
+    public String toLogout(){
+
+        return "redirect:/admin/login";
+    }*/
 }
