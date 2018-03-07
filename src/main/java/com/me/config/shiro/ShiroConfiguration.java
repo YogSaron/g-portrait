@@ -32,9 +32,9 @@ public class ShiroConfiguration {
 //        filterChainDefinitionMap.put("/admin/login","anon");
         //<!-- authc:所有url都必须认证通过才可以访问; anon:所有url都都可以匿名访问-->
         filterChainDefinitionMap.put("/admin/**","authc");
-
-        Map map = new HashMap();
-        map.put("authc",new MyLoginFilter());
+        //解决shiro 登录成功后无法正确跳转successUrl的问题，重写Filter
+        Map map = new LinkedHashMap();
+        map.put("authc",new MyFormAuthenticationFilter());
         shiroFilterFactoryBean.setFilters(map);
         // 如果不设置默认会自动寻找Web工程根目录下的"/login.jsp"页面
         shiroFilterFactoryBean.setLoginUrl("/admin/login");
