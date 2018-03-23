@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.lang.reflect.Method;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class GPortraitApplicationTests {
@@ -36,4 +38,16 @@ public class GPortraitApplicationTests {
 		String frontNum = str.substring(0,str.length()-offsetNum);
 		return lateNum+frontNum;
 	}
+
+
+	public void te(){
+		SysUser sysUser = new SysUser();
+		try {
+			Method method = sysUser.getClass().getMethod("getName",SysUser.class);
+			method.invoke(sysUser,new Object[]{});
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 }

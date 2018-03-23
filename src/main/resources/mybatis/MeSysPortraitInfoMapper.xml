@@ -19,13 +19,13 @@
     delete from me_sys_portrait_info
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.me.mybatis.entity.MeSysPortraitInfo">
+  <insert id="insert" parameterType="com.me.mybatis.entity.MeSysPortraitInfo" useGeneratedKeys="true" keyProperty="id">
     insert into me_sys_portrait_info (id, Portrait_name, star
       )
     values (#{id,jdbcType=INTEGER}, #{portraitName,jdbcType=VARCHAR}, #{star,jdbcType=INTEGER}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.me.mybatis.entity.MeSysPortraitInfo">
+  <insert id="insertSelective" parameterType="com.me.mybatis.entity.MeSysPortraitInfo" useGeneratedKeys="true" keyProperty="id">
     insert into me_sys_portrait_info
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
