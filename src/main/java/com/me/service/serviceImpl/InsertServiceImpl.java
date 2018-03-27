@@ -16,8 +16,8 @@ public class InsertServiceImpl implements InsertService{
     @Autowired
     private MeSysPortraitInfoMapper meSysPortraitInfoMapper;
 
-    @Autowired
-    private ThreadPoolTaskExecutor taskExecutor;
+    /*@Autowired
+    private ThreadPoolTaskExecutor taskExecutor;*/
 
     @Override
     public void insertData() {

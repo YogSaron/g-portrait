@@ -19,7 +19,6 @@ public class ShiroConfiguration {
 
     @Bean
     public ShiroFilterFactoryBean shiroFilter(SecurityManager securityManager){
-        System.out.println("ShiroConfiguration.shirFilter()");
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         shiroFilterFactoryBean.setSecurityManager(securityManager);
         //拦截器
